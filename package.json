@@ -1,0 +1,35 @@
+{
+    "name": "wdio_template",
+    "version": "1.0.0",
+    "description": "wdio template in conjunction with cucumber. By aecbanegas",
+    "main": "index.js",
+    "scripts": {
+        "test": "wdio wdio.conf.js",
+        "wdio": "wdio run wdio.conf.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aecbanegas/wdio_template.git"
+    },
+    "keywords": [
+        "wdio",
+        "webdriverio",
+        "cucumber"
+    ],
+    "author": "Andres Cruz",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/aecbanegas/wdio_template/issues"
+    },
+    "homepage": "https://github.com/aecbanegas/wdio_template#readme",
+    "devDependencies": {
+        "@babel/core": "^7.18.10",
+        "@babel/preset-env": "^7.18.10",
+        "@babel/register": "^7.18.9",
+        "@wdio/cli": "^7.20.9",
+        "@wdio/cucumber-framework": "^7.20.8",
+        "@wdio/local-runner": "^7.20.9",
+        "@wdio/selenium-standalone-service": "^7.20.8",
+        "@wdio/spec-reporter": "^7.20.8"
+    }
+}
