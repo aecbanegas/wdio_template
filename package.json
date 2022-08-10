@@ -4,8 +4,8 @@
     "description": "wdio template in conjunction with cucumber. By aecbanegas",
     "main": "index.js",
     "scripts": {
-        "test": "wdio wdio.conf.js",
-        "wdio": "wdio run wdio.conf.js"
+        "test": "wdio ./wdio.conf.js",
+        "wdio": "wdio run ./wdio.conf.js"
     },
     "repository": {
         "type": "git",
