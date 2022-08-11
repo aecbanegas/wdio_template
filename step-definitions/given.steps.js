@@ -1,7 +1,7 @@
-const { Given } = require('@wdio/cucumber-framework');
+import { Given } from '@wdio/cucumber-framework';
 
-const LoginPage = require('../pages/login.page');
-const MarketPage = require('../pages/home.page');
+import LoginPage from '../pageobjects/login.page';
+import MarketPage from '../pageobjects/home.page';
 
 const pages = {
     login: LoginPage,

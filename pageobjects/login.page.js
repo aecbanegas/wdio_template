@@ -1,4 +1,4 @@
-const Page = require('./page');
+import Page from './page';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -26,17 +26,17 @@ class LoginPage extends Page {
      * e.g. to login using username and password
      */
     async login(username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+        await this.emailFld.setValue(username);
+        await this.passwordFld.setValue(password);
+        await this.submitBtn.click();
     }
 
     /**
      * overwrite specific options to adapt it to page object
      */
     open() {
-        return super.open('');
+        return super.open('sign_in');
     }
 }
 
-module.exports = new LoginPage();
+export default new LoginPage();

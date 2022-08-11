@@ -16,7 +16,7 @@ Feature: Login Address Book
 
     Given I am on the login page
     When I login with '<username>' and '<password>'
-    Then I should see dashboard screen
+    Then I should see home screen
 
     Examples:
       | username               | password     |

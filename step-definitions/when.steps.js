@@ -1,7 +1,7 @@
-const { When } = require('@wdio/cucumber-framework');
+import { When } from '@wdio/cucumber-framework';
 
-const LoginPage = require('../pages/login.page');
-const MarketPage = require('../pages/home.page');
+import LoginPage from '../pageobjects/login.page';
+import MarketPage from '../pageobjects/home.page';
 
 const pages = {
     login: LoginPage,
@@ -9,6 +9,9 @@ const pages = {
 }
 
 When(/^I login with \'([^\"]*)\' and \'([^\"]*)\'$/, async (username, password) => {
+    console.log("valor de username: ",username)
+    console.log("valor de password: ",password)
+    console.log(typeof password)
     await pages.login.login(username,password);
 });
 //When I log out

@@ -1,7 +1,7 @@
-const { Then } = require('@wdio/cucumber-framework');
+import { Then } from '@wdio/cucumber-framework';
 
-const LoginPage = require('../pages/login.page');
-const MarketPage = require('../pages/home.page');
+import LoginPage from '../pageobjects/login.page';
+import MarketPage from '../pageobjects/home.page';
 
 const pages = {
     login: LoginPage,
@@ -9,11 +9,11 @@ const pages = {
 }
 
 Then(/^I should see a flash message saying (.*)$/, async (message) => {
-    await expect(pages.login.errorNotification).toHaveTextContaining(message);
+    await expect(pages.login.errorNot).toHaveTextContaining(message);
 });
 
-Then(/^I should see dashboard screen$/, async ()  => {
-    await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html')
+Then(/^I should see home screen$/, async ()  => {
+    await expect(browser).toHaveUrl('http://a.testaddressbook.com/')
 });
 
 //Then I should see dashboard of a non-logged user

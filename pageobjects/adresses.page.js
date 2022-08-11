@@ -1,4 +1,4 @@
-const Page = require('./page');
+import Page from './page';
 
 /**
  * sub page containing specific selectors and methods for a specific page oisi
@@ -83,4 +83,4 @@ class AdressPage extends Page {
 
 }
 
-module.exports = new AdressPage();
+export default new AdressPage();

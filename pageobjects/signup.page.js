@@ -1,4 +1,4 @@
-const Page = require('./page');
+import Page from './page';
 
 /**
  * sub page containing specific selectors and methods for a specific page oisi
@@ -27,4 +27,4 @@ class SignUpPage extends Page {
 
 }
 
-module.exports = new SignUpPage();
+export default new SignUpPage();

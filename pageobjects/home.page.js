@@ -1,6 +1,4 @@
-const Page = require('./page');
-const ApiResponses = require("../../services/api.responses")
-const api = new ApiResponses()
+import Page from './page';
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -46,4 +44,4 @@ class HomePage extends Page {
     }
 }
 
-module.exports = new HomePage();
+export default new HomePage();
