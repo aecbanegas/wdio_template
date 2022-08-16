@@ -1,5 +1,5 @@
 import Page from './page';
-
+import 'dotenv/config'
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -15,7 +15,7 @@ class LoginPage extends Page {
     get currentUserTxt() { return $('#navbar > div:nth-child(2) > span') }
 
     //Pantalla sign in
-    get errorNot() {return $('body > div > div.alert.alert-notice')}
+    get errorNot() { return $('body > div > div.alert.alert-notice') }
     get signHeader() { return $('#clearance > h2') }
     get emailFld() { return $('#session_email') }
     get passwordFld() { return $('#session_password') }
@@ -26,8 +26,15 @@ class LoginPage extends Page {
      * e.g. to login using username and password
      */
     async login(username, password) {
-        await this.emailFld.setValue(username);
-        await this.passwordFld.setValue(password);
+        if (username.includes("correct") || password.includes("correct")) {
+            console.log('User: ',process.env.KEY);
+            console.log('Password: ',process.env.PASSWORD)
+            await this.emailFld.setValue(process.env.KEY);
+            await this.passwordFld.setValue(process.env.PASSWORD);
+        } else {
+            await this.emailFld.setValue(username);
+            await this.passwordFld.setValue(password);
+        }
         await this.submitBtn.click();
     }
 

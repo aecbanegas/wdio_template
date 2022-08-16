@@ -19,6 +19,6 @@ Feature: Login Address Book
     Then I should see home screen
 
     Examples:
-      | username               | password     |
-      | xbanex@helloiconic.com | secret_sauce |
+      | username   | password     |
+      | correct    | correct      |
 

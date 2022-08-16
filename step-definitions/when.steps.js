@@ -9,10 +9,10 @@ const pages = {
 }
 
 When(/^I login with \'([^\"]*)\' and \'([^\"]*)\'$/, async (username, password) => {
-    console.log("valor de username: ",username)
-    console.log("valor de password: ",password)
+    console.log("valor de username: ", username)
+    console.log("valor de password: ", password)
     console.log(typeof password)
-    await pages.login.login(username,password);
+    await pages.login.login(username, password);
 });
 //When I log out
 When(/^I log out$/, async () => {
@@ -34,7 +34,7 @@ When(/^the screen loads all is elements at (\w+) screen$/, async (page) => {
             // await pages.market.charging()
             await expect(pages.market.nftElements).toBeDisplayed()
             break;
-    
+
         default:
             break;
     }

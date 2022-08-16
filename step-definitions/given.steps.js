@@ -24,7 +24,7 @@ Given(/^I am in the (\w+) screen$/, async (page) => {
             await expect(browser).toHaveUrl('https://nft-staging.cflowapp.io/home')
             console.log('Reviso si estamos en Market screen')
             break;
-    
+
         default:
             break;
     }
