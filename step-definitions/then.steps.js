@@ -9,11 +9,12 @@ const pages = {
 }
 
 Then(/^I should see a flash message saying (.*)$/, async (message) => {
-    await expect(pages.login.errorNot).toHaveTextContaining(message);
+    //await expect(pages.login.errorNot).toHaveTextContaining(message);
+    await expect(pages.login.verifyErrors()).toBeTruthy()
 });
 
 Then(/^I should see home screen$/, async ()  => {
-    await expect(browser).toHaveUrl('http://a.testaddressbook.com/')
+    await expect(browser).toHaveUrl('https://demoqa.com/profile')
 });
 
 //Then I should see dashboard of a non-logged user

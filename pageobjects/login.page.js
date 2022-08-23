@@ -7,20 +7,15 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    get homeBtn() { return $('#navbar > div.navbar-nav.mr-auto > a.nav-item.nav-link.active') }
-    get signinBtn() { return $('#sign-in') }
-    //Header Elements visible when logged
-    get adressesBtn() { return $('#navbar > div.navbar-nav.mr-auto > a:nth-child(2)') }
-    get signoutBtn() { return $('#navbar > div.navbar-nav.mr-auto > a:nth-child(3)') }
-    get currentUserTxt() { return $('#navbar > div:nth-child(2) > span') }
 
     //Pantalla sign in
-    get errorNot() { return $('body > div > div.alert.alert-notice') }
-    get signHeader() { return $('#clearance > h2') }
-    get emailFld() { return $('#session_email') }
-    get passwordFld() { return $('#session_password') }
-    get submitBtn() { return $('#clearance > div > div > form > div:nth-child(5) > input') }
-    get signUpLink() { return $('#clearance > div > div > form > div:nth-child(6) > a') }
+    get errorNot() { return $('#name') }
+    get signHeader() { return $('#userForm > div:nth-child(1) > h2') }
+    get emailFld() { return $('#userName') }
+    get passwordFld() { return $('#password') }
+    get submitBtn() { return $('#login') }
+    get signUpBtn() { return $('#newUser') }
+
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -38,11 +33,28 @@ class LoginPage extends Page {
         await this.submitBtn.click();
     }
 
+    //Verifyng error inputs or message
+    async verifyErrors(message) {
+            switch (message) {
+                case "red input both":
+                    //verifies both inputs are invalid
+                    return ((await this.emailFld.getAttribute('class')).includes('is-invalid')&&(await this.passwordFld.getAttribute('class')).includes('is-invalid'));
+                case "red input pass":
+                    //verifies pass is invalid
+                    return ((await this.passwordFld.getAttribute('class')).includes('is-invalid'));
+                case "red input user":
+                    //verifies user is invalid
+                    return ((await this.emailFld.getAttribute('class')).includes('is-invalid'));
+                default:
+                    return (await this.errorNot.getText()).includes(message);
+            }
+    }
+
     /**
      * overwrite specific options to adapt it to page object
      */
     open() {
-        return super.open('sign_in');
+        return super.open('login');
     }
 }
 

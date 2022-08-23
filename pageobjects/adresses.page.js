@@ -78,7 +78,7 @@ class AdressPage extends Page {
     //TODO Destroy Addres option
     
     open() {
-        return super.open('');
+        return super.open('addresses');
     }
 
 }

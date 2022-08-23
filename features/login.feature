@@ -1,4 +1,4 @@
-Feature: Login Address Book
+Feature: Login Demo QA Book
   #Login testing, invalid
   Scenario Outline: As a user, I can't log with unvalid credentials
 
@@ -7,11 +7,13 @@ Feature: Login Address Book
     Then I should see a flash message saying <message>
 
     Examples:
-      | username               | password | message                |
-      |                        |          | Bad email or password. |
-      | xbanex@helloiconic.com |          | Bad email or password. |
-      | xbanex@helloiconic.com | cgjfkfvy | Bad email or password. |
+      | username               | password | message                       |
+      |                        |          | red input both                |
+      | xbanex                 |          | red input pass                |
+      |                        | cgjfkfvy | red input user                |
+      | xbanex                 | cgjfkfvy | Invalid username or password! |
   #Login testing, valid
+  # When log validate https://demoqa.com/profile
   Scenario Outline: As a user, I can log with valid credentials
 
     Given I am on the login page
