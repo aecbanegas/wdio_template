@@ -10,7 +10,7 @@ const pages = {
 
 Then(/^I should see a flash message saying (.*)$/, async (message) => {
     //await expect(pages.login.errorNot).toHaveTextContaining(message);
-    await expect(pages.login.verifyErrors()).toBeTruthy()
+    await expect(pages.login.verifyErrors(message)).toBeTruthy()
 });
 
 Then(/^I should see home screen$/, async ()  => {

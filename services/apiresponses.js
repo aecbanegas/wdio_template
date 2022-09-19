@@ -6,35 +6,47 @@ const AS_BASE_URL = process.env.WEB_API;
 class ApiResponses {
     //section thet needs COOKIES
     //TODO Aun no se ha aplicado ninguna funcion de axios que requiera cookies
-    async vefir(data) {
+    async login(data) {
         try {
             let response = await axios.post(AS_BASE_URL + "/api/authenticate", data , {
                 headers: {
                     "content-type": "application/json"
                 }
-            })
+                        })
             return response;
-        } catch(err) {
-            return err;
+        } catch (error) {
+            
         }
     }
+    // async vefir(data) {
+    //     try {
+    //         let response = await axios.post(AS_BASE_URL + "/api/authenticate", data , {
+    //             headers: {
+    //                 "content-type": "application/json"
+    //             }
+    //         })
+    //         return response;
+    //     } catch(err) {
+    //         return err;
+    //     }
+    // }
 
 
 
-    //section that does not needs COOKIES
-    async getMarketPlace(order,page,items_per_page) {
-        //Expected
-        //order to be ASC or DESC
-        //page expected int
-        //items_per_page expected int
-        try {
-            const response = await axios.get(AS_BASE_URL + `/api/marketplace/${order}/${page}/${items_per_page}`)
-            const {nfts} = response 
-            return nfts;
-        } catch(err) {
-            return err;
-        }
-    }
+    // //section that does not needs COOKIES
+    // async getMarketPlace(order,page,items_per_page) {
+    //     //Expected
+    //     //order to be ASC or DESC
+    //     //page expected int
+    //     //items_per_page expected int
+    //     try {
+    //         const response = await axios.get(AS_BASE_URL + `/api/marketplace/${order}/${page}/${items_per_page}`)
+    //         const {nfts} = response 
+    //         return nfts;
+    //     } catch(err) {
+    //         return err;
+    //     }
+    // }
 
     // async getRelationshipWithArticle(id, cookies) {
     //     let url = PARTICIPANT_SERVICE_BASE_URL + `/v1/participants/relationships?entityTypeId=ArticleProduct&entityId=${id}`
