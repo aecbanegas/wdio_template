@@ -1,5 +1,6 @@
 import Page from './page';
 import 'dotenv/config'
+import { getUserData } from '../services/apiresponses';
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -22,6 +23,15 @@ class ProfilePage extends Page {
     /**
      * overwrite specific options to adapt it to page object
      */
+
+    async reviewProfile(){
+        const response = await getUserData(process.env.KEY,process.env.PASSWORD);
+        const username = await this.usernameLabel.getValue();
+        console.log(response)
+        console.log("HEYA")
+        return (username == response.username)
+    }
+
     open() {
         return super.open('profile');
     }

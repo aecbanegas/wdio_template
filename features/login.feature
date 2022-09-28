@@ -18,7 +18,7 @@ Feature: Login Demo QA Book
 
     Given I am on the login page
     When I login with '<username>' and '<password>'
-    Then I should see home screen
+    Then I should see profile screen
 
     Examples:
       | username   | password     |
