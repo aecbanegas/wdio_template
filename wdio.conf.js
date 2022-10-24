@@ -1,4 +1,6 @@
 import { getUserData } from "./services/apiresponses.js";
+import { JsonDB, Config } from 'node-json-db';
+const db = new JsonDB(new Config("myDataBase", true, true, '/'));
 //import { db } from './services/database';
 exports.config = {
     //
@@ -217,15 +219,15 @@ exports.config = {
      * @param {Object}         browser      instance of created browser/device session
      */
     //TODO Agregar db local
-    // before: function (capabilities, specs) {
-    //     browser.setWindowSize(1920, 1080);
-    //     browser.addCommand('pushData', async (path, data) => {
-    //         db.push(path, data)
-    //     })
-    //     browser.addCommand('getData', async (path) => {
-    //         return db.getData(path)
-    //     })
-    // },
+    before: function (capabilities, specs) {
+        browser.setWindowSize(1920, 1080);
+        browser.addCommand('pushData', async (path, data) => {
+            await db.push(path, data)
+        })
+        browser.addCommand('getData', async (path) => {
+            return db.getData(path)
+        })
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
@@ -249,12 +251,12 @@ exports.config = {
      * @param {Object}                 context  Cucumber World object
      */
     //TODO Agregar bd local
-    // beforeScenario: async function (world, context) {
-    //     if (world.pickle.name === "As a user, I can log with valid credentials") {
-    //         const response = await getUserData(process.env.KEY, process.env.PASSWORD);
-    //         browser.pushData("./services",response);
-    //     }
-    // },
+    beforeScenario: async function (world, context) {
+        if (world.pickle.name === "As a user, I can log with valid credentials") {
+            const response = await getUserData(process.env.KEY, process.env.PASSWORD);
+            await browser.pushData("/services/myDataBase",response);
+        }
+    },
     /**
      *
      * Runs before a Cucumber Step.

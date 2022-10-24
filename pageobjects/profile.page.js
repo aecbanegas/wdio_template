@@ -1,6 +1,6 @@
 import Page from './page';
 import 'dotenv/config';
-import { getUserData } from '../services/apiresponses';
+// import { getUserData } from '../services/apiresponses';
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -29,12 +29,14 @@ class ProfilePage extends Page {
      */
 
     async reviewProfile(){
-        const response = await getUserData(process.env.KEY, process.env.PASSWORD);
-        // const response = browser.getData();
+        // const response = await getUserData(process.env.KEY, process.env.PASSWORD);
+        const response = await browser.getData('/services/myDataBase');
         await this.usernameLabel.waitForExist();
         const username = await this.usernameLabel.getText();
         // console.log(response)
         // console.log("HEYA")
+        console.log(response);
+        console.log(username)
         return (username == response.username)
         // return false;
     }
