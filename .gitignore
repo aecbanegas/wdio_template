@@ -22,7 +22,7 @@
 .env.test.local
 .env.production.local
 .env
-
+*.json
 npm-debug.log*
 
 # ignore all logs

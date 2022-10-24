@@ -22,8 +22,8 @@ class LoginPage extends Page {
      */
     async login(username, password) {
         if (username.includes("correct") || password.includes("correct")) {
-            console.log('User: ',process.env.KEY);
-            console.log('Password: ',process.env.PASSWORD)
+            // console.log('User: ',process.env.KEY);
+            // console.log('Password: ',process.env.PASSWORD)
             await this.emailFld.setValue(process.env.KEY);
             await this.passwordFld.setValue(process.env.PASSWORD);
         } else {

@@ -9,9 +9,9 @@ const pages = {
 }
 
 When(/^I login with \'([^\"]*)\' and \'([^\"]*)\'$/, async (username, password) => {
-    console.log("valor de username: ", username)
-    console.log("valor de password: ", password)
-    console.log(typeof password)
+    // console.log("valor de username: ", username)
+    // console.log("valor de password: ", password)
+    // console.log(typeof password)
     await pages.login.login(username, password);
 });
 //When I log out

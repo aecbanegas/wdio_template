@@ -1,5 +1,6 @@
 import axios from 'axios';
-import 'dotenv/config';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const AS_BASE_URL = process.env.WEB_API;
 //TODO Actualizar a la nueva api
