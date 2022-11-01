@@ -46,10 +46,10 @@ class LoginPage extends Page {
                     //verifies user is invalid
                     return ((await this.emailFld.getAttribute('class')).includes('is-invalid'));
                 default:
-                    console.log("Message expected:",message);
+                    // console.log("Message expected:",message);
                     let shown = await this.errorNot.getText();
-                    console.log("Message shown:", shown)
-                    console.log("Includes? ",(shown.includes(message)))
+                    // console.log("Message shown:", shown)
+                    // console.log("Includes? ",(shown.includes(message)))
                     return (await this.errorNot.getText()).includes(message);
             }
     }

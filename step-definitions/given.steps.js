@@ -1,30 +1,24 @@
 import { Given } from '@wdio/cucumber-framework';
-
 import LoginPage from '../pageobjects/login.page';
-import MarketPage from '../pageobjects/home.page';
+import profilePage from '../pageobjects/profile.page';
+import booksPage from '../pageobjects/books.page';
 
 const pages = {
     login: LoginPage,
-    market: MarketPage
+    profile: profilePage,
+    books: booksPage
 }
 
 Given(/^I am on the (\w+) page$/, async (page) => {
-    await pages[page].open()
-});
-
-Given(/^I am logged in SauceDemo$/, async () => {
-    //toBeDisplayed() llama a isDisplayed() desde el punto de vista del expect
-    await expect(pages.dashboard.userDropDown).toBeDisplayed()
-});
-
-Given(/^I am in the (\w+) screen$/, async (page) => {
-    pages.market.open()
+    const url = await browser.getUrl();
+    if (url != `https://demoqa.com/${page}`) await pages[page].open();   
+    //TODO assertion for values on screen
     switch (page) {
-        case 'Market':
-            await expect(browser).toHaveUrl('https://nft-staging.cflowapp.io/home')
+        case 'profile':
+            expect(true).toBeTruthy();
             break;
-
         default:
+            expect(true).toBeTruthy();
             break;
     }
 });

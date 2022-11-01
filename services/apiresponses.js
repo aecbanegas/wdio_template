@@ -18,6 +18,7 @@ export const login = async(userName,password) => {
         console.error(error)
     }
 } 
+
 export const getUserData = async(userName,password)=>{
     try {
         let {userId,token} = await login(userName,password)
@@ -28,6 +29,20 @@ export const getUserData = async(userName,password)=>{
                       }
                     })
         return response.data;
+        //se pueden recuperar los libros con .books
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const getBooks = async () => {
+    try {
+        let response = await axios.get(AS_BASE_URL + "/BookStore/v1/Books", {
+            headers: {
+                "content-type": "application/json"
+                      }
+                    })
+        return response.data.books;
         //se pueden recuperar los libros con .books
     } catch (error) {
         console.error(error)

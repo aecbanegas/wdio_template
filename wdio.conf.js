@@ -1,4 +1,4 @@
-import { getUserData } from "./services/apiresponses.js";
+import { getBooks, getUserData } from "./services/apiresponses.js";
 import { JsonDB, Config } from 'node-json-db';
 const db = new JsonDB(new Config("myDataBase", true, true, '/'));
 //import { db } from './services/database';
@@ -25,7 +25,9 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './features/login.feature'
+        ['./features/login.feature',
+            './features/library.feature',
+            './features/logout.feature']
     ],
     // Patterns to exclude.
     exclude: [
@@ -218,9 +220,7 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    //TODO Agregar db local
     before: function (capabilities, specs) {
-        browser.setWindowSize(1920, 1080);
         browser.addCommand('pushData', async (path, data) => {
             await db.push(path, data)
         })
@@ -250,11 +250,14 @@ exports.config = {
      * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
      * @param {Object}                 context  Cucumber World object
      */
-    //TODO Agregar bd local
     beforeScenario: async function (world, context) {
         if (world.pickle.name === "As a user, I can log with valid credentials") {
             const response = await getUserData(process.env.KEY, process.env.PASSWORD);
-            await browser.pushData("/services/myDataBase",response);
+            await browser.pushData("/services/myDataBase", response);
+        }
+        if (world.pickle.name === "As a user, I can go to Bookstore") {
+            const response = await getBooks();
+            await browser.pushData("/services/Books", response);
         }
     },
     /**
@@ -277,8 +280,13 @@ exports.config = {
      * @param {number}             result.duration  duration of scenario in milliseconds
      * @param {Object}             context          Cucumber World object
      */
-    // afterStep: function (step, scenario, result, context) {
-    // },
+    afterStep: async function (step, scenario, result, context) {
+        if (result.passed && step.text == 'I delete a book from my personal library' && scenario.name == 'As a user, I can delete books from my personal library') {
+            // console.log('Aqui')
+            const response = await getUserData(process.env.KEY, process.env.PASSWORD);
+            await browser.pushData("/services/myDataBase", response);
+        }
+    },
     /**
      *
      * Runs after a Cucumber Scenario.
