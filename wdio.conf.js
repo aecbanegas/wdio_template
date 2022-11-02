@@ -1,5 +1,6 @@
 import { getBooks, getUserData } from "./services/apiresponses.js";
 import { JsonDB, Config } from 'node-json-db';
+import SlackReporter from '@moroo/wdio-slack-reporter';
 const db = new JsonDB(new Config("myDataBase", true, true, '/'));
 //import { db } from './services/database';
 exports.config = {
@@ -138,7 +139,16 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec',[
+        SlackReporter,
+        {
+          slackOptions: {
+            type: 'web-api',
+            channel: process.env.SLACK_CHANNEL,
+            slackBotToken: process.env.SLACK_BOT_TOKEN,
+          },
+        }
+      ]],
 
 
     //
