@@ -6,7 +6,7 @@ import profilePage from '../pageobjects/profile.page';
 const pages = {
     login: LoginPage,
     profile: profilePage,
-    books: booksPage    
+    books: booksPage
 }
 
 //LOGIN
@@ -20,11 +20,11 @@ When(/^I log out$/, async () => {
 });
 
 //BOOKS SECTION
-When(/^I search for (\w+)$/, async (book)=>{
+When(/^I search for (\w+)$/, async (book) => {
     await pages.books.searchFor(book);
 });
 
-When(/^I add a book to my personal library$/, async ()=>{
+When(/^I add a book to my personal library$/, async () => {
     await pages.books.addBook();
 });
 
@@ -32,6 +32,6 @@ When(/^I delete a book from my personal library$/, async () => {
     await pages.profile.deleteBook();
 });
 
-When(/^I click on book store button$/, async()=>{
+When(/^I click on book store button$/, async () => {
     await pages.profile.toBookStore();
 });

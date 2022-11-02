@@ -101,19 +101,19 @@ class ProfilePage extends Page {
         // await browser.waitUntil(alertIsPresent());
         await browser.waitUntil(await EC.alertIsPresent(), { timeout: 5000, timeoutMsg: 'Failed, after waiting for the alert to be present' })
         if (browser.isAlertOpen()) {
-            console.log('Se muestra la alerta')
+            // console.log('Se muestra la alerta')
             const alertText = await browser.getAlertText();
             if (!alertText.includes('deleted')) {
                 await browser.dismissAlert();
                 return false;
             } else {
-                console.log('Texto de alerta: ',alertText);
+                // console.log('Texto de alerta: ', alertText);
                 await browser.acceptAlert();
-                console.log('Se cerro?')
+                // console.log('Se cerro?')
                 return true;
             }
         } else {
-            console.log('no se muestra la alerta')
+            // console.log('no se muestra la alerta')
             return false;
         }
     }
@@ -126,6 +126,12 @@ class ProfilePage extends Page {
     async toBookStore() {
         await this.booksButton.scrollIntoView();
         await this.booksButton.click();
+    }
+
+    async interfaceAsserts() {
+        const isTable = await this.reactTable.isDisplayed();
+        const actionItems = (await this.logoutBtn.isDisplayed()) && (await this.searchInput.isDisplayed()) && (await this.searchBtn.isDisplayed());
+        return (isTable && actionItems);
     }
 
     open() {

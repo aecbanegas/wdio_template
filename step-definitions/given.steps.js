@@ -11,14 +11,9 @@ const pages = {
 
 Given(/^I am on the (\w+) page$/, async (page) => {
     const url = await browser.getUrl();
-    if (url != `https://demoqa.com/${page}`) await pages[page].open();   
-    //TODO assertion for values on screen
-    switch (page) {
-        case 'profile':
-            expect(true).toBeTruthy();
-            break;
-        default:
-            expect(true).toBeTruthy();
-            break;
+    if (url != `https://demoqa.com/${page}`) {
+        await pages[page].open();
     }
+    await expect(await pages[page].interfaceAsserts()).toBeTruthy();
+
 });

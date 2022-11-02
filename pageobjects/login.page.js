@@ -35,23 +35,30 @@ class LoginPage extends Page {
 
     //Verifyng error inputs or message
     async verifyErrors(message) {
-            switch (message) {
-                case "red input both":
-                    //verifies both inputs are invalid
-                    return ((await this.emailFld.getAttribute('class')).includes('is-invalid')&&(await this.passwordFld.getAttribute('class')).includes('is-invalid'));
-                case "red input pass":
-                    //verifies pass is invalid
-                    return ((await this.passwordFld.getAttribute('class')).includes('is-invalid'));
-                case "red input user":
-                    //verifies user is invalid
-                    return ((await this.emailFld.getAttribute('class')).includes('is-invalid'));
-                default:
-                    // console.log("Message expected:",message);
-                    let shown = await this.errorNot.getText();
-                    // console.log("Message shown:", shown)
-                    // console.log("Includes? ",(shown.includes(message)))
-                    return (await this.errorNot.getText()).includes(message);
-            }
+        switch (message) {
+            case "red input both":
+                //verifies both inputs are invalid
+                return ((await this.emailFld.getAttribute('class')).includes('is-invalid') && (await this.passwordFld.getAttribute('class')).includes('is-invalid'));
+            case "red input pass":
+                //verifies pass is invalid
+                return ((await this.passwordFld.getAttribute('class')).includes('is-invalid'));
+            case "red input user":
+                //verifies user is invalid
+                return ((await this.emailFld.getAttribute('class')).includes('is-invalid'));
+            default:
+                // console.log("Message expected:",message);
+                let shown = await this.errorNot.getText();
+                // console.log("Message shown:", shown)
+                // console.log("Includes? ",(shown.includes(message)))
+                return (await this.errorNot.getText()).includes(message);
+        }
+    }
+
+    async interfaceAsserts() {
+        await this.signHeader.waitForDisplayed();
+        const textItems = await this.signHeader.isDisplayed();
+        const actionItems = (await this.submitBtn.isDisplayed() || (await this.signUpBtn.isDisplayed())) || ((await this.emailFld.isDisplayed()) || (await this.passwordFld.isDisplayed()));
+        return (textItems&&actionItems);
     }
 
     /**

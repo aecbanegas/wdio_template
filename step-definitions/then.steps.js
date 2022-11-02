@@ -9,7 +9,7 @@ const pages = {
     books: booksPage
 }
 
-Then(/^I should see ([^\"]*) screen$/, async (screen)  => {
+Then(/^I should see ([^\"]*) screen$/, async (screen) => {
     switch (screen) {
         case 'profile':
             // console.log("In this screen",screen);
@@ -36,12 +36,12 @@ Then(/^I should see a flash message saying (.*)$/, async (message) => {
 //PROFILE SECTION
 
 //BOOKS SECTION
-Then(/^I am able to see the results of my search by (.*)$/, async (book) =>{
+Then(/^I am able to see the results of my search by (.*)$/, async (book) => {
     expect(await pages.books.searchBook(book)).toBeTruthy();
     await pages.books.searchFor(' ');
 });
 
-Then(/^I should see the book at my personal library$/, async()=>{
+Then(/^I should see the book at my personal library$/, async () => {
     // await pages.books.toProfile();
     // console.log("Despues de toprofile")
     await pages.profile.open();
@@ -49,6 +49,6 @@ Then(/^I should see the book at my personal library$/, async()=>{
 });
 
 Then(/^I should see the book is not more at my personal library$/, async () => {
-    console.log('Andtes de reviewDeleteBook')
+    // console.log('Andtes de reviewDeleteBook')
     expect(await pages.profile.reviewDeleteBook()).toBeTruthy();
 });

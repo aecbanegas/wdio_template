@@ -14,9 +14,11 @@ class BooksPage extends Page {
     get bookTitles() { return $$('.action-buttons .mr-2 a') }
     get searchBox() { return $('#searchBox') }
     get logOutButton() { return $('#submit') }
+    get usernameLabel() { return $('#userName-value') }
 
     //Individual books screen
-    get informationWrapper() { return $('.profile-wrapper') }
+    // get informationWrapper() {return $('')}
+    get authorWrapper() { return $('#author-wrapper') }
     get backBookstoreBtn() { return $('.fullButtonWrap .text-left.fullButton') }
     get addCollectionBtn() { return $('.fullButtonWrap .text-right.fullButton') }
 
@@ -78,7 +80,7 @@ class BooksPage extends Page {
         await books[random].scrollIntoView();
         await books[random].click();
         //working in book individual screen
-        await this.informationWrapper.waitForExist();
+        // await this.informationWrapper.waitForExist();
         await this.addCollectionBtn.scrollIntoView();
         await this.addCollectionBtn.click();
         //verificar la alerta en el browser
@@ -88,21 +90,22 @@ class BooksPage extends Page {
         if (!alertText.includes('added')) {
             await browser.dismissAlert();
             return false;
-        }else{
-            console.log(alertText);
+        } else {
+            // console.log(alertText);
             await browser.acceptAlert();
-            console.log('Se acepto la alerta.')
+            // console.log('Se acepto la alerta.')
             await this.backBookstoreBtn.click();
             return true;
         }
     }
 
-    // async toProfile() {
-    //     await this.profileBtn.scrollIntoView();
-    //     console.log('Se hizo scroll?')
-    //     await this.profileBtn.click();
-    //     console.log('se dio click?')
-    // }
+    async interfaceAsserts() {
+        await this.usernameLabel.waitForDisplayed()
+        const textItems = (await this.usernameLabel.isDisplayed()) || (await this.authorWrapper.isDisplayed());
+        const actionItems = ((await this.searchBox.isDisplayed()) && (await this.logOutButton.isDisplayed()));
+        return (textItems || actionItems);
+    }
+
     /**
      * overwrite specific options to adapt it to page object
      */
