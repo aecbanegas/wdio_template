@@ -14,7 +14,7 @@ jobs:
         - name: Install dependencies
           run: npm install
         - name: Run Test with webdio
-          run: npmtest
+          run: npm test
         - uses: actions/upload-artifact@v1
           if: failure()
           with:
