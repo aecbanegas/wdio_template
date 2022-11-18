@@ -1,4 +1,4 @@
-name: Hello test
+name: Continous Integration Automation
 on:
   push:
     branches:
