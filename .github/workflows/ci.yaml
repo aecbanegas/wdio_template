@@ -1,4 +1,4 @@
-name: Continous Integration Automation
+name: Continous Integration Automation Demo
 on:
   push:
     branches:
